@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 import { Property, SearchFilters } from '@/types/property';
 
 export class VivaRealInspiredScraper {
