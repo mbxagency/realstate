@@ -71,7 +71,7 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
     loadNeighborhoods();
   }, [filters.location]);
 
-  const handleInputChange = (field: keyof SearchFilters, value: any) => {
+  const handleInputChange = (field: keyof SearchFilters, value: string | number | undefined | string[]) => {
     setFilters(prev => ({
       ...prev,
       [field]: value
@@ -88,8 +88,8 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (_e: React.FormEvent) => {
+    _e.preventDefault();
     
     // Se não há cidade selecionada, usar a query como busca geral
     if (!filters.location) {
@@ -258,7 +258,7 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
                     <input
                       type="checkbox"
                       checked={filters.neighborhoods?.includes(neighborhood) || false}
-                      onChange={(e) => {
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         const current = filters.neighborhoods || [];
                         if (e.target.checked) {
                           handleInputChange('neighborhoods', [...current, neighborhood]);

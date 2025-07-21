@@ -23,6 +23,7 @@ export interface SearchFilters {
   bedrooms?: number;
   location?: string;
   minArea?: number;
+  neighborhoods?: string[];
 }
 
 export interface SearchResult {
