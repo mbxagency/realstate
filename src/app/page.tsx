@@ -68,6 +68,12 @@ export default function Home() {
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-sm text-gray-600">8 portais ativos</span>
               </div>
+              <a 
+                href="/scraper-test" 
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+              >
+                🔧 Testar Scraper
+              </a>
             </div>
           </div>
         </div>

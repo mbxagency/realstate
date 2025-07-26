@@ -1,14 +1,4 @@
-import { BaseScraper } from './base';
-import { VivaRealScraper } from './vivareal';
-import { VivaRealPuppeteerScraper } from './vivareal-puppeteer';
-import { VivaRealInteractiveScraper } from './vivareal-interactive';
-import { VivaRealSimpleScraper } from './vivareal-simple';
-import { VivaRealInspiredScraper } from './vivareal-inspired';
-import { VivaRealDirectScraper } from './vivareal-direct';
-import { ZapScraper } from './zap';
-import { GenericScraper } from './generic';
-import { MercadoLivreScraper } from './mercadolivre';
-import { MockScraper } from './mock';
+import { VivaRealEnhancedScraper } from './vivareal-enhanced';
 import { Property, SearchFilters, SearchResult } from '@/types/property';
 
 // Interface comum para todos os scrapers
@@ -17,33 +7,25 @@ interface ScraperInterface {
 }
 
 export class ScraperManager {
-  // Configuração: true para usar scrapers reais, false para usar mock
-  private useRealScrapers = false;
+  // Sempre usar scrapers reais
+  private useRealScrapers = true;
 
   private get scrapers(): Array<{ scraper: ScraperInterface; name: string }> {
-    if (this.useRealScrapers) {
-      return [
-        // Scraper direto baseado no projeto VivaRealWebScraping
-        { scraper: new VivaRealDirectScraper(), name: 'VivaReal (Direct)' }
-      ];
-    } else {
-      return [
-        // MockScraper (rápido, dados de teste)
-        { scraper: new MockScraper(), name: 'Mock Data' }
-      ];
-    }
+    return [
+      { scraper: new VivaRealEnhancedScraper(), name: 'VivaReal (Enhanced)' }
+    ];
   }
 
-  // Método para alternar entre scrapers reais e mock
-  setUseRealScrapers(useReal: boolean) {
-    this.useRealScrapers = useReal;
-    console.log(`Switched to ${useReal ? 'real scrapers' : 'mock data'}`);
+  // Método para alternar entre scrapers reais e mock (agora sem efeito)
+  setUseRealScrapers(_useReal: boolean) {
+    this.useRealScrapers = true;
+    console.log('Sempre usando scrapers reais');
   }
 
   async searchAll(query: string, filters: SearchFilters): Promise<SearchResult> {
     const startTime = Date.now();
     console.log(`Starting search for: "${query}" with filters:`, filters);
-    console.log(`Using ${this.useRealScrapers ? 'real scrapers' : 'mock data'}`);
+    console.log('Usando apenas scrapers reais');
 
     // Executar todos os scrapers disponíveis
     const mainScrapers = this.scrapers;

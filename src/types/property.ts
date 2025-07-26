@@ -13,6 +13,10 @@ export interface Property {
   area?: number;
   type: 'casa' | 'apartamento' | 'terreno' | 'comercial' | 'outro';
   createdAt: Date;
+  // Novos campos baseados no projeto de referência
+  neighborhood?: string;
+  advertiser?: string;
+  parking?: number;
 }
 
 export interface SearchFilters {
